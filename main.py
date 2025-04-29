@@ -73,11 +73,13 @@ def fetch_data(cnpj_list: list[str]) -> pd.DataFrame:
 if __name__ == "__main__":
     
     file_path = Path.cwd() / 'data' / 'cnpj.xlsx'
+    output_path = Path.cwd() / 'data' / 'cnpj_out.xlsx'
     
     cnpj_list = extract_cnpjs_from_excel(file_path)
+    
     try:
         df = fetch_data(cnpj_list=cnpj_list)
-        df.to_excel('cnpj_data.xlsx', index=False)
+        df.to_excel(output_path, index=False)
         print(df)
     except Exception as e:
         print(e)
